@@ -1,0 +1,27 @@
+never message_delivery {    /* !([] (channels[0]?[RREP])) */
+T0_init:
+	do
+	:: atomic { (! ((channels[0]?[RREP]))) -> assert(!(! ((channels[0]?[RREP])))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
+never deadlock_free {    /* !([] (1)) */
+T0_init:
+	do
+	:: atomic { (! ((1))) -> assert(!(! ((1)))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
+never message_delivery {    /* !([] ((((((((((rrepSent[0]) || (rrepSent[1])) || (rrepSent[2])) || (rrepSent[3])) || (rrepSent[4])) || (rrepSent[5])) || (rrepSent[6])) || (rrepSent[7])) || (rrepSent[8])) || (rrepSent[9]))) */
+T0_init:
+	do
+	:: atomic { (! (((((((((((rrepSent[0]) || (rrepSent[1])) || (rrepSent[2])) || (rrepSent[3])) || (rrepSent[4])) || (rrepSent[5])) || (rrepSent[6])) || (rrepSent[7])) || (rrepSent[8])) || (rrepSent[9])))) -> assert(!(! (((((((((((rrepSent[0]) || (rrepSent[1])) || (rrepSent[2])) || (rrepSent[3])) || (rrepSent[4])) || (rrepSent[5])) || (rrepSent[6])) || (rrepSent[7])) || (rrepSent[8])) || (rrepSent[9]))))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
